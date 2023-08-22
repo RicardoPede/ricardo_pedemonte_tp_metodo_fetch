@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso del Método fetch en JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Aspectos Teóricos</h1>
+        <h2>1. Método fetch en JavaScript</h2>
+        <p>El método <code>fetch</code> en JavaScript es una API moderna para realizar solicitudes de red de red
+            (HTTP/HTTPS) desde un navegador o un entorno de ejecución similar. Su propósito principal en el desarrollo
+            web es permitir que los desarrolladores realicen peticiones a recursos en servidores web y obtengan
+            respuestas, como datos JSON, texto, imágenes u otros recursos, de manera asíncrona sin tener que recargar
+            toda la página. Esto es fundamental para la creación de aplicaciones web interactivas y dinámicas.</p>
+
+        <h2>2. Sintaxis Básica</h2>
+        <p>La sintaxis básica del método fetch es la siguiente:</p>
+        <pre><code>
+fetch(url, options)
+  .then(response => {
+    // Manejar la respuesta
+  })
+  .catch(error => {
+    // Manejar errores
+  });
+    </code></pre>
+
+        <p>
+            Los parámetros más comunes que acepta son:
+        </p>
+        <ul>
+            <li>
+                url: La URL del recurso al que se realizará la solicitud.
+                options
+            </li>
+            <li>
+                (opcional): Un objeto que contiene opciones de configuración para la solicitud, como el método HTTP,
+                encabezados (headers), cuerpo de la solicitud, entre otros.
+            </li>
+        </ul>
+
+        <h2>3. Manejo de Respuestas</h2>
+
+        <p> La API Fetch en JavaScript se utiliza para realizar solicitudes de red y obtener respuestas desde servidores
+            web. El proceso típico involucra los siguientes pasos:
+        </p>
+        <p>Invocar el método fetch(url) donde url es la dirección de la API o recurso al que deseas acceder. Esto
+            devuelve
+            una promesa que se resolverá con un objeto Response que contiene la respuesta del servidor.
+        </p>
+        <p>Utilizar el método then() para manejar la promesa resuelta. Si la promesa se resuelve (resolve), se ejecutará
+            la
+            función proporcionada a then(). Dentro de esta función, puedes gestionar los datos recibidos de la API, como
+            parsearlos o utilizarlos en tu aplicación.
+        </p>
+        <p>Opcionalmente, encadenar más métodos then() para realizar más operaciones en los datos recibidos o en la
+            respuesta, si es necesario.
+        </p>
+        <p>Usar el método catch() para manejar posibles errores. Si la promesa se rechaza (reject), es decir, se produce
+            un
+            error al realizar la solicitud (por ejemplo, la API está inactiva o hay un problema de conexión), el código
+            dentro del catch() se ejecutará para manejar el error de manera adecuada.
+        </p>
+        <p>La interfaz Request en la API Fetch representa una solicitud HTTP que se puede personalizar antes de
+            enviarla.
+            Puedes usar la interfaz Request para agregar encabezados (headers), configurar el método HTTP, incluir un
+            cuerpo
+            en la solicitud, entre otras cosas. Luego, esta solicitud personalizada se pasa como argumento al método
+            fetch(), que luego realiza la solicitud al servidor con los detalles especificados.
+        </p>
+        <p>En general, el uso de la API Fetch y las promesas ofrece un enfoque más moderno y legible para realizar
+            solicitudes y manejar respuestas en comparación con enfoques más antiguos como XMLHttpRequest.
+        </p>
+        <h5>Las respuestas se manejan utilizando promesas y los métodos <code>json()</code>, <code>text()</code> y
+            <code>blob()</code>.
+        </h5>
+        <p>
+            Las respuestas obtenidas mediante el método fetch se manejan utilizando las promesas en JavaScript. La
+            respuesta es un objeto del tipo Response que contiene varios métodos para acceder al contenido de la
+            respuesta. Algunos de los métodos más utilizados son:
+        </p>
+        <ul>
+            <li>
+                json(): Este método parsea la respuesta como JSON y devuelve una promesa que resuelve en el objeto
+                JavaScript
+                correspondiente.
+            </li>
+            <li>
+                text(): Este método obtiene el contenido de la respuesta como texto y devuelve una promesa que resuelve
+                en una
+                cadena de texto.
+            </li>
+            <li>
+                blob(): Este método obtiene el contenido de la respuesta como un objeto Blob (Binary Large Object) y
+                devuelve
+                una promesa que resuelve en el Blob.
+            </li>
+        </ul>
+        <ul>
+            <p>Ejemplo de uso:</p>
+            <pre><code>
+        fetch('https://api.example.com/data')
+        .then(response => response.json()) // Parsear la respuesta como JSON
+        .then(data => {
+            // Trabajar con los datos obtenidos
+        })
+        .catch(error => {
+            // Manejar errores
+        });
+    </code></pre>
+        </ul>
+        <h2>4. Ventajas de <code>fetch</code></h2>
+        <p>Comparado con <code>XMLHttpRequest</code>, <code>fetch</code> ofrece una sintaxis más moderna y permite un
+            manejo más sencillo de solicitudes y respuestas.</p>
+
+        <p>La ventaja de utilizar fetch en comparación con enfoques tradicionales como XMLHttpRequest es que fetch está
+            diseñado siguiendo los estándares modernos de la web y proporciona una interfaz más limpia y consistente
+            para
+            realizar solicitudes HTTP.
+        </p>
+        <p>Algunas de las ventajas incluyen:
+        </p>
+        <ul>
+            <li>
+                Sintaxis más simple y basada en promesas, lo que facilita la escritura de código asíncrono y su
+                legibilidad.
+            </li>
+            <li>
+                Admite una amplia variedad de formatos de respuesta, como JSON, texto y blobs, y permite su manipulación
+                directa
+                sin tener que recurrir a conversiones manuales.
+            </li>
+            <li>
+                Es compatible con el uso de <b>async/await</b>, lo que simplifica aún más el manejo asíncrono.
+            </li>
+        </ul>
+
+        <h2>5. Encabezados (Headers)</h2>
+        <p>Los encabezados se utilizan para enviar información adicional en las solicitudes, como tokens de
+            autenticación o preferencias de contenido.</p>
+        <p>Los encabezados (headers) en las solicitudes fetch son campos adicionales que se envían junto con la
+            solicitud
+            HTTP y proporcionan información adicional sobre la solicitud, como el tipo de contenido esperado o el tipo
+            de
+            autenticación utilizado. Son útiles en situaciones donde se necesita personalizar la solicitud o comunicar
+            información específica al servidor. Por ejemplo:
+        </p>
+        <pre><code>
+        fetch('https://api.example.com/data', {
+            method: 'GET',
+            headers: {
+              'Authorization': 'Bearer myAccessToken',
+              'Accept': 'application/json'
+            }
+          })
+          .then(response => {
+            // Manejar la respuesta
+          })
+          .catch(error => {
+            // Manejar errores
+          });          
+    </code></pre>
+        <p>En este caso, los encabezados se utilizan para enviar un token de acceso de autenticación y especificar que
+            se espera una respuesta en formato JSON. Los encabezados son fundamentales para la comunicación precisa y
+            segura entre el cliente y el servidor.
+        </p>
+
+        <hr>
+        <a href="index.html" class="pb-2 border-bottom">
+            <h2>Parte 2: Ejemplos Prácticos</h2>
+        </a>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
